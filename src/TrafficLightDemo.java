@@ -9,21 +9,27 @@ public class TrafficLightDemo {
         String userContinue;
 
         do {
-            String prompt = "In terms of a stoplight, what color would you like to know the meaning of?";
-            String userInput = validator.getRequiredString(prompt);
-
-            if (userInput.equalsIgnoreCase("green")) {
-                makeDrivingDecision(TrafficLightColor.GREEN);
-            } else if (userInput.equalsIgnoreCase("yellow")) {
-                makeDrivingDecision(TrafficLightColor.YELLOW);
-            } else if (userInput.equalsIgnoreCase("red")) {
-                makeDrivingDecision(TrafficLightColor.RED);
-            }
-
+            getTrafficLightColor(validator);
             System.out.println("Would you like to run the application again?");
             userContinue = sc.next();
         } while (userContinue.equalsIgnoreCase("yes"));
     }
+
+
+
+    public static void getTrafficLightColor(Validator validator) {
+        try {
+            String prompt = "In terms of a stoplight, what color would you like to know the meaning of?";
+            String userInput = validator.getRequiredString(prompt);
+            TrafficLightColor color = TrafficLightColor.valueOf(userInput.toUpperCase());
+            makeDrivingDecision(color);
+        } catch (IllegalArgumentException e) {
+            System.out.println("The color you typed is not a valid traffic light color. Try Again.");
+            getTrafficLightColor(validator);
+        }
+    }
+
+
     public static void makeDrivingDecision(TrafficLightColor color) {
         switch (color) {
             case GREEN:

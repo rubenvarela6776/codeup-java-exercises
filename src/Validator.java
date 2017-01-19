@@ -69,6 +69,7 @@ public class Validator {
     }
     public String getRequiredString(String prompt) {
         System.out.println(prompt);
+        sc.next();
         return sc.nextLine();
     }
     public void setTimeout(int milliseconds) {
