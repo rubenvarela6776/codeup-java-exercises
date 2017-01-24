@@ -1,3 +1,5 @@
+import validator.Validator;
+
 import java.util.*; // uses all util's
 /**
  * Created by rubenvarela on 1/17/17.
